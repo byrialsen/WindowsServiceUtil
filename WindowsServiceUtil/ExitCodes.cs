@@ -8,11 +8,6 @@ namespace WindowsServiceUtil
     internal static class ExitCodes
     {
         /// <summary>
-        /// Failed with unknown error
-        /// </summary>
-        internal const int FailedUnknown = -1;
-
-        /// <summary>
         /// Successfully 
         /// </summary>
         internal const int Success = 0;
@@ -25,16 +20,21 @@ namespace WindowsServiceUtil
         /// <summary>
         /// Command is unknown error
         /// </summary>
-        internal const int UnknownCommand = 2;
+        internal const int UnknownCommand = 10;
+
+        /// <summary>
+        /// Failed with unknown error
+        /// </summary>
+        internal const int FailedUnknown = 11;
 
         /// <summary>
         /// Missing parameters error
         /// </summary>
-        internal const int MissingParameters = 3;
+        internal const int MissingParameters = 12;
 
         /// <summary>
         /// Stopping Windows Service failed
         /// </summary>
-        internal const int ServiceStopFailed = 4;
+        internal const int ServiceStopFailed = 134;
     }
 }

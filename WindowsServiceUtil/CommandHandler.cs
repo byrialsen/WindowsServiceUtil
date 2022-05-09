@@ -3,6 +3,10 @@
     using System;
     using System.Diagnostics;
 
+    /// <summary>
+    /// Command line handler
+    /// </summary>
+    // TODO: Maybe refactor to use https://www.youtube.com/watch?v=kM0pWAwo_FQ&t=894s
     internal static class CommandHandler
     {
         internal static int Execute(string[] args)

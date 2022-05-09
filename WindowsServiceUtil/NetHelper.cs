@@ -1,17 +1,23 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-
-namespace WindowsServiceUtil
+﻿namespace WindowsServiceUtil
 {
+    using System;
+    using System.Diagnostics;
+    using System.IO;
+
     internal static class NetHelper
     {
         private static string NetFilename = Path.Combine(Environment.SystemDirectory, "net.exe");
 
         internal static bool StopService(string serviceName, int timeout)
         {
-            // send net stop servicename
-            Process process = Process.Start(NetFilename, $"stop {serviceName}");
+            // use sc.exe to request service info
+            ProcessStartInfo startInfo = new ProcessStartInfo()
+            {
+                UseShellExecute = false,
+                FileName = NetFilename,
+                Arguments = $"stop {serviceName}"
+            };
+            Process process = Process.Start(startInfo);
 
             if (process.WaitForExit(timeout))
             {
