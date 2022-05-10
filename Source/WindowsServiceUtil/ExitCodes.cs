@@ -35,6 +35,6 @@ namespace WindowsServiceUtil
         /// <summary>
         /// Stopping Windows Service failed
         /// </summary>
-        internal const int ServiceStopFailed = 134;
+        internal const int ServiceStopFailed = 13;
     }
 }

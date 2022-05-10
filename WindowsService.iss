@@ -40,13 +40,11 @@ begin
 end;
 
 // Stop Windows Service
-function StopService(ServiceName: String): Integer;
+function StopService(wsu: String; ServiceName: String): Integer;
 var
-  wsu: String;
   ResultCode: Integer;
 begin
-  // get full filepath to windows service util file
-  wsu := ExpandConstant('{app}\wsu.exe');
+  Log('wsu file used: ' + wsu)
 
   if (FileExists(wsu)) then
   begin
@@ -77,28 +75,17 @@ end;
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 var
   Res: Integer;
-  ResultCode: Integer;
   ErrMessage: String;
+  wsu: String;
 begin
+  // unpack newest version to temp folder  
+  ExtractTemporaryFile('wsu.exe');
+  
+  // get temp file reference
+  wsu := ExpandConstant('{tmp}\wsu.exe');
+          
   // stop service
-  Res := StopService(ExpandConstant('{#ServiceName}'));
-    
-    (*
-  // handle stop service result
-  if (Res = Success) then
-  begin
-    Log('StopService succeeded');
-  end
-  else if (Res = 1) then
-  begin
-    RestartService := true;
-    Log('StopService succeeded, restart needed');
-  end
-  else
-  begin
-    
-  end;
-  *)
+  Res := StopService(wsu, ExpandConstant('{#ServiceName}'));
 
   // handle restart
   if (Res = SuccessNeedsRestart) then
@@ -125,7 +112,9 @@ begin
   case CurUninstallStep of
     usUninstall:
     begin
-      Res := StopService(ExpandConstant('{#ServiceName}'));
+      wsu := ExpandConstant('{app}\wsu.exe');
+
+      Res := StopService(wsu, ExpandConstant('{#ServiceName}'));
 
       // log error
       if (Res >= UnknownCommand) then
@@ -134,23 +123,5 @@ begin
         Log(ErrMessage)
       end;
     end;
-    
-      (*
-      // handle stop service result
-      if (Res = 0) then
-      begin
-        Log('StopService succeeded');
-      end
-      else if (Res = 1) then
-      begin
-        RestartService := true;
-        Log('StopService succeeded, restart needed');
-      end
-      else
-      begin
-        Log('StopService failed, halt installer');
-      end;
-    end; 
-    *)
   end;
 end;
