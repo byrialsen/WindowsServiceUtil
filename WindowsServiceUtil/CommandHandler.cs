@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Linq;
 
     /// <summary>
     /// Command line handler
@@ -77,7 +78,17 @@
             // wait for service process to exit if process is running (pid <>  0).
             if (pid > 0)
             {
-                Process.GetProcessById(pid)?.WaitForExit(timeout);
+                try
+                {
+                    Process process = Process.GetProcesses()
+                        .FirstOrDefault(x => x.Id.Equals(pid));
+
+                    process?.WaitForExit(timeout);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
             }
 
             // we succeeded but return exitcode in respect to restart
