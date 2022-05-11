@@ -6,9 +6,11 @@ WindowsServiceUtil (wsu.exe) is a command line utility to help with (un)install 
 > wsu.exe stop -name=```SERVICENAME``` -timeout=```TIME_IN_MS```
 
 
-*The utility is case insensitive.*
+*In generelt the utility is case insensitive.*
 
-*Timeout has a default value of 30000.*
+*```Timeout``` has a default value of 30000.*
+
+*```ServiceName``` is mandatory.*
 
 ### Examples
 
@@ -61,17 +63,14 @@ internal const int ServiceStopFailed = 13;
 ## What's included
 
 - 'Source' folder contains both the code related to 'WindowsServiceUtil' and also a sample of a Windows Service. 
-- 'BuildOutput' contains all binary files related to the sample Windows Service. 
 - The binary ```wsu.exe``` is added to the root of repo.
-- A sample InnoSetup script can be used as an example to show how the utility can be used. The .iss file is also placed in the root of the repo.
+- A sample InnoSetup script ```WindowsService.iss``` is place in the root of the repo.
 
 # How to tryout
 
 - Clone this repository.
-- Start PowerShell (As Administrator).
-- Run '.\Build.ps1' to publish service files in '.\BuildOutput'.
-- Compile '.\WindowsService.iss'.
-- Run the '.\Setup.exe'
-
+- Start PowerShell as 'Administrator'.
+- Run '.\Build.ps1' to publish service files into '.\BuildOutput'.
+- Compile and run script '.\WindowsService.iss'.
 
 
