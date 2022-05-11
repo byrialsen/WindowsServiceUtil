@@ -5,6 +5,9 @@ AppName=IS Windows Service
 AppVersion=1.0.0
 DefaultDirName={autopf}\ISWindowService
 DisableWelcomePage=No
+OutputDir=.\
+OutputBaseFilename=Setup
+
 
 [Files]
 Source: "wsu.exe"; DestDir: "{app}"; Flags: ignoreversion

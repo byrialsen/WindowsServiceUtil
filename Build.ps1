@@ -1,0 +1,1 @@
+dotnet publish .\Source\InnoSetupWindowsService\ -p:PublishProfile=FolderProfile
