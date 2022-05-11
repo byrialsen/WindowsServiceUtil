@@ -7,8 +7,7 @@ DefaultDirName={autopf}\ISWindowService
 DisableWelcomePage=No
 OutputDir=.\
 OutputBaseFilename=Setup
-
-
+     
 [Files]
 Source: "wsu.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "BuildOutput\*"; DestDir: "{app}"; Flags: ignoreversion createallsubdirs recursesubdirs
@@ -16,7 +15,6 @@ Source: "BuildOutput\*"; DestDir: "{app}"; Flags: ignoreversion createallsubdirs
 [Run]
 // create service
 Filename: "{sys}\sc.exe"; Parameters: "create ""{#ServiceName}"" start= auto binPath= ""{app}\InnoSetupWindowsService.exe"""; Flags: runhidden
-// start service (only if 'DoStartService' return true)  displayname=""{#ServiceName}"" start= auto binPath= ""{app}\InnoSetupWindowsService.exe"""; Flags: runhidden
 // start service (only if 'DoStartService' return true) 
 Filename: "{sys}\net.exe"; Parameters: "start ""{#ServiceName}"""; Flags: runhidden; Check: DoStartService
 
