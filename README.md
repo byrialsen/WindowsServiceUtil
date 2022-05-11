@@ -65,9 +65,13 @@ internal const int ServiceStopFailed = 13;
 - The binary ```wsu.exe``` is added to the root of repo.
 - A sample InnoSetup script can be used as an example to show how the utility can be used. The .iss file is also placed in the root of the repo.
 
-# Tryout
+# How to tryout
 
-Just clone the repository and run the .iss script. Everything should be working.
+- Clone this repository.
+- Start PowerShell (As Administrator).
+- Run '.\Build.ps1' to publish service files in '.\BuildOutput'.
+- Compile '.\WindowsService.iss'.
+- Run the '.\Setup.exe'
 
 
 
